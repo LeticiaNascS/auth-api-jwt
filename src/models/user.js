@@ -8,6 +8,11 @@ class User extends Model {
 
 export default (sequelize) => {
   User.init({
+    id: {
+  type: DataTypes.INTEGER, 
+  primaryKey: true,
+  autoIncrement: true     
+},
     name: {
       type: DataTypes.STRING,
       allowNull: false

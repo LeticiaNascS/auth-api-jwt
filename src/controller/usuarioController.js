@@ -16,7 +16,25 @@ class UsuarioController {
     const { id } = req.params;
     try {
       const buscaId = await usuarioService.listarUsuarioPorId(id);
-      res.status(200).json(buscaId)
+      res.status(200).json(buscaId);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+  static async criarUsuario(req, res) {
+    const { nome, email, senha } = req.body;
+    try {
+      const cadastrarUsuario = await usuarioService.criarUsuario({
+        nome,
+        email,
+        senha,
+      });
+      res
+        .status(201)
+        .json({
+          message: "Usuário cadastrado com sucesso!",
+          usuario: cadastrarUsuario,
+        });
     } catch (error) {
       res.status(400).json(error.message);
     }
