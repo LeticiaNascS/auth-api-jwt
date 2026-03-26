@@ -11,5 +11,15 @@ class UsuarioController {
       res.status(400).json(error.message);
     }
   }
+
+  static async buscaUsuarioPorId(req, res) {
+    const { id } = req.params;
+    try {
+      const buscaId = await usuarioService.listarUsuarioPorId(id);
+      res.status(200).json(buscaId)
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
 }
 export default UsuarioController;

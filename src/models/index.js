@@ -1,9 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
 import process from "process";
 import configData from "../config/config.json" with { type: "json" };
-
-
-import userModel from './user.js'; 
+import userModel from "./user.js";
 
 const env = process.env.NODE_ENV || "development";
 const config = configData[env];
@@ -17,20 +15,16 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
   );
 }
 
-
-const models = [
-  userModel,
-]
+const models = [userModel];
 
 models.forEach((modelInit) => {
   const model = modelInit(sequelize, DataTypes);
   db[model.name] = model;
 });
-
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
