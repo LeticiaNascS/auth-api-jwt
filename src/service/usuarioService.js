@@ -1,4 +1,4 @@
-import dataBase from "../models/index.cjs";
+import dataBase from "../models/index.js";
 
 class UsuarioService {
   async listarUsuarios() {
