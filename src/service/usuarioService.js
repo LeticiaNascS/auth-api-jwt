@@ -53,7 +53,7 @@ class UsuarioService {
       throw new Error("Usuário já contém cadastro");
     }
     try {
-      const senhaHash = await hash(dto.senha, 6); // adicionando o hash a senha e o salt
+      const senhaHash = await hash(dto.senha, 6); 
       const criarUsuario = await dataBase.User.create({
         name: dto.nome,
         email: dto.email,
@@ -64,6 +64,32 @@ class UsuarioService {
       throw error;
     }
   }
+  async atualizarUsuario(id, dto) {
+    const usuario = await dataBase.User.findOne({ where: { id } });
+
+    if (!usuario) {
+      throw new Error("Usuário não encontrado");
+    }
+
+    if (dto.senha) {
+      dto.password = await hash(dto.senha, 6);
+    }
+
+    try {
+      await dataBase.User.update(
+        {
+          name: dto.nome || usuario.name,
+          email: dto.email || usuario.email,
+          password: dto.password || usuario.password,
+        },
+        { where: { id } },
+      );
+      return { message: "Usuário atualizado com sucesso" };
+    } catch (error) {
+      throw new Error("Erro ao atualizar usuário");
+    }
+  }
+
   async deletarUsuario(id) {
     const deletarUsuario = await dataBase.User.destroy({
       where: {

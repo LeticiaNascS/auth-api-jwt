@@ -47,6 +47,20 @@ class UsuarioController {
       res.status(500).json(error.message);
     }
   }
+  static async atualizarUsuario(req, res) {
+    const { id } = req.params;
+    const { nome, email, senha } = req.body;
+    try {
+      const usuarioAtualizado = await usuarioService.atualizarUsuario(id, {
+        nome,
+        email,
+        senha,
+      });
+      res.status(200).json(usuarioAtualizado);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
   static async login(req, res) {
     const { email, senha } = req.body;
 

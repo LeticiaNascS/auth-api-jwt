@@ -1,102 +1,141 @@
-import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerJsdoc from "swagger-jsdoc";
 
 const options = {
   definition: {
-    openapi: '3.0.0',
+    openapi: "3.0.0",
     info: {
-      title: 'API de Usuários - Letícia Nascimento',
-      version: '1.0.0',
-      description: 'Documentação completa do CRUD e Autenticação JWT',
+      title: "API de Usuários - Letícia Nascimento",
+      version: "1.0.0",
+      description: "Documentação completa do CRUD e Autenticação JWT",
     },
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
         },
       },
     },
     paths: {
-      '/login': {
+      "/login": {
         post: {
-          summary: 'Realiza o login do usuário',
-          tags: ['Autenticação'],
+          summary: "Realiza o login do usuário",
+          tags: ["Autenticação"],
           requestBody: {
             required: true,
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  type: 'object',
+                  type: "object",
                   properties: {
-                    email: { type: 'string', example: 'seu@email.com' },
-                    senha: { type: 'string', example: 'suasenha123' }
-                  }
-                }
-              }
-            }
+                    email: { type: "string", example: "seu@email.com" },
+                    senha: { type: "string", example: "suasenha123" },
+                  },
+                },
+              },
+            },
           },
           responses: {
-            200: { description: 'Login realizado com sucesso' },
-            401: { description: 'Credenciais inválidas' }
-          }
-        }
+            200: { description: "Login realizado com sucesso" },
+            401: { description: "Credenciais inválidas" },
+          },
+        },
       },
-      '/usuarios': {
+      "/usuarios": {
         get: {
-          summary: 'Lista todos os usuários',
-          tags: ['Usuários'],
+          summary: "Lista todos os usuários",
+          tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           responses: {
-            200: { description: 'Lista retornada com sucesso' },
-            401: { description: 'Não autorizado' }
-          }
+            200: { description: "Lista retornada com sucesso" },
+            401: { description: "Não autorizado" },
+          },
         },
         post: {
-          summary: 'Cadastra um novo usuário',
-          tags: ['Usuários'],
+          summary: "Cadastra um novo usuário",
+          tags: ["Usuários"],
           requestBody: {
             required: true,
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  type: 'object',
+                  type: "object",
                   properties: {
-                    nome: { type: 'string' },
-                    email: { type: 'string' },
-                    senha: { type: 'string' }
-                  }
-                }
-              }
-            }
+                    nome: { type: "string" },
+                    email: { type: "string" },
+                    senha: { type: "string" },
+                  },
+                },
+              },
+            },
           },
           responses: {
-            201: { description: 'Usuário criado com sucesso' }
-          }
-        }
+            201: { description: "Usuário criado com sucesso" },
+          },
+        },
       },
-      '/usuarios/{id}': {
+      "/usuarios/{id}": {
         get: {
-          summary: 'Busca usuário por ID',
-          tags: ['Usuários'],
+          summary: "Busca usuário por ID",
+          tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           parameters: [
-            { name: 'id', in: 'path', required: true, schema: { type: 'string' } }
+            { name: "id", in: "path", required: true, schema: { type: "string" } },
           ],
           responses: {
-            200: { description: 'Usuário encontrado' },
-            404: { description: 'Usuário não encontrado' }
-          }
+            200: { description: "Usuário encontrado" },
+            404: { description: "Usuário não encontrado" },
+          },
         },
         delete: {
-          summary: 'Deleta um usuário',
-          tags: ['Usuários'],
+          summary: "Deleta um usuário",
+          tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           parameters: [
-            { name: 'id', in: 'path', required: true, schema: { type: 'string' } }
+            { name: "id", in: "path", required: true, schema: { type: "string" } },
           ],
           responses: {
-            200: { description: 'Usuário deletado' }
+            200: { description: "Usuário deletado" },
+          },
+        },
+        put: {
+          summary: "Atualiza dados do usuário",
+          tags: ["Usuários"],
+          security: [{ bearerAuth: [] }],
+          parameters: [
+            { name: "id", in: "path", required: true, schema: { type: "string" } },
+          ],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    nome: { type: "string" },
+                    email: { type: "string" },
+                    senha: { type: "string" },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            200: { 
+              description: "Atualizado com sucesso",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      message: { type: "string" }
+                    }
+                  }
+                }
+              }
+            },
+            400: { description: "Erro na atualização" }
           }
         }
       }
