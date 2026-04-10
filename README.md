@@ -1,89 +1,40 @@
-# auth-api-jwt
 # 🔐 Auth API JWT
 
-API de autenticação desenvolvida com Node.js, utilizando boas práticas de arquitetura e segurança, incluindo criptografia de senhas e autenticação via token JWT.
+API de autenticação desenvolvida com **Node.js**, focada em segurança e escalabilidade. O projeto implementa um CRUD completo de usuários com rotas protegidas, criptografia de senhas e documentação interativa.
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Tecnologias Utilizadas
 
-* Node.js
-* Express
-* Sequelize
-* SQLite
-* JWT (JSON Web Token)
-* Bcrypt
-* Swagger
-
----
-
-## 📂 Estrutura do projeto
-
-```
-src/
- ├── controllers/
- ├── routes/
- ├── middlewares/
- ├── services/
- └── app.js
-
-config/
-models/
-migrations/
-seeders/
-
-server.js
-```
+* **Runtime:** Node.js
+* **Framework:** Express
+* **ORM:** Sequelize
+* **Banco de Dados:** SQLite 
+* **Segurança:** JWT (JSON Web Token) & Bcrypt (Hashing de senhas)
+* **Documentação:** Swagger UI
 
 ---
 
 ## ⚙️ Funcionalidades
 
-* Cadastro de usuário
-* Login com autenticação JWT
-* Senha criptografada com bcrypt
-* Rotas protegidas por middleware
-* Documentação interativa com Swagger
+* **Cadastro de Usuário:** Registro seguro.
+* **Autenticação:** Sistema de Login que gera tokens JWT com expiração de 1h.
+* **Segurança:** Senhas protegidas com Salt Hashing via Bcrypt.
+* **CRUD Completo:** Listagem, busca por ID, atualização de dados, criação de novos usuários e exclusão de usuários.
+* **Middleware de Proteção:** Verificação de token em rotas sensíveis.
+* **Documentação Viva:** Interface Swagger para testes em tempo real.
 
 ---
 
-## 🔐 Autenticação
+## 📂 Estrutura do Projeto
 
-A API utiliza JWT para autenticação.
-Após o login, um token é gerado e deve ser enviado nas requisições protegidas.
-
-Exemplo de header:
-
-```
-Authorization: Bearer seu_token_aqui
-```
-
-
----
-
-## 📚 Documentação Swagger
-
-Acesse:
-
-```
-http://localhost:3000/api-docs
-```
-
----
-
-## 🧠 Aprendizados
-
-Este projeto foi desenvolvido com foco em:
-
-* Boas práticas de arquitetura (MVC)
-* Segurança em aplicações backend
-* Autenticação e autorização
-* Integração com banco de dados usando ORM
-* Documentação de API com Swagger
-
----
-
-
-## 👩‍💻 Autora
-
-Desenvolvido por Letícia de Sousa do Nascimento
+```text
+src/
+ ├── controller/    # Gerenciamento de requisições e respostas
+ ├── service/       # Regras de negócio e integração com banco
+ ├── routes/        # Definição dos endpoints da API
+ ├── middleware/    # Filtro de autenticação JWT
+ ├── models/        # Mapeamento das tabelas do banco de dados
+ ├── database/      # Configurações de migrations e conexão
+ └── swagger.js     # Configurações da documentação
+server.js           # Ponto de entrada da aplicação
