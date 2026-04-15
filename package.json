@@ -21,17 +21,17 @@
   "homepage": "https://github.com/LeticiaNascS/auth-api-jwt#readme",
   "devDependencies": {
     "nodemon": "^3.1.14"
-    
   },
   "dependencies": {
-    "sequelize-cli": "^6.6.5",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
+    "picomatch": "^4.0.4",
     "sequelize": "^6.37.8",
+    "sequelize-cli": "^6.6.5",
     "sqlite3": "^6.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
