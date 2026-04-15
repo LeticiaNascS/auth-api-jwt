@@ -8,6 +8,10 @@ const options = {
       version: "1.0.0",
       description: "Documentação completa do CRUD e Autenticação JWT",
     },
+    servers: [
+      { url: "https://api.letnascimento.dev", description: "Produção" },
+      { url: "http://localhost:3000", description: "Local" },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -81,7 +85,12 @@ const options = {
           tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           parameters: [
-            { name: "id", in: "path", required: true, schema: { type: "string" } },
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "string" },
+            },
           ],
           responses: {
             200: { description: "Usuário encontrado" },
@@ -93,7 +102,12 @@ const options = {
           tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           parameters: [
-            { name: "id", in: "path", required: true, schema: { type: "string" } },
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "string" },
+            },
           ],
           responses: {
             200: { description: "Usuário deletado" },
@@ -104,7 +118,12 @@ const options = {
           tags: ["Usuários"],
           security: [{ bearerAuth: [] }],
           parameters: [
-            { name: "id", in: "path", required: true, schema: { type: "string" } },
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "string" },
+            },
           ],
           requestBody: {
             required: true,
@@ -122,24 +141,24 @@ const options = {
             },
           },
           responses: {
-            200: { 
+            200: {
               description: "Atualizado com sucesso",
               content: {
                 "application/json": {
                   schema: {
                     type: "object",
                     properties: {
-                      message: { type: "string" }
-                    }
-                  }
-                }
-              }
+                      message: { type: "string" },
+                    },
+                  },
+                },
+              },
             },
-            400: { description: "Erro na atualização" }
-          }
-        }
-      }
-    }
+            400: { description: "Erro na atualização" },
+          },
+        },
+      },
+    },
   },
   apis: [],
 };
