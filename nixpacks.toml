@@ -1,5 +1,0 @@
-[phases.install]
-cmds = ["npm install --include=dev"]
-
-[start]
-cmd = "npx sequelize-cli db:migrate && node server.js"
