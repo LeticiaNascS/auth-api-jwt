@@ -20,8 +20,7 @@ API de autenticação desenvolvida com **Node.js**, focada em segurança e escal
 
 Para agilizar o teste inicial da aplicação, você pode utilizar o seguinte usuário pré-configurado:
 
-| Campo | Valor |
-| :--- | :--- |
+|
 | **Nome** | `Teste aplicação` |
 | **E-mail** | `testeApi@email.com` |
 | **Senha** | `TesteApi1234` |
