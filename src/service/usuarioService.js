@@ -10,14 +10,14 @@ class UsuarioService {
     });
 
     if (!usuario) {
-      throw new Error("Usuário ou senha inválidos");
+      throw new Error("Usuário não encontrado, realize o cadastro");
     }
 
     //  Compara a senha enviada com a do banco
     const senhaIguais = await compare(dto.senha, usuario.password);
 
     if (!senhaIguais) {
-      throw new Error("Usuário ou senha inválidos");
+      throw new Error("Senha inválida");
     }
 
     // Se deu certo, gera o Token
@@ -41,6 +41,9 @@ class UsuarioService {
         id: id,
       },
     });
+    if (!buscaUsuarioId) {
+      throw new Error("O Id informado não existe, tente novamente");
+    }
     return buscaUsuarioId;
   }
   async criarUsuario(dto) {
@@ -50,10 +53,10 @@ class UsuarioService {
       },
     });
     if (usuario) {
-      throw new Error("Usuário já contém cadastro");
+      throw new Error("Usuário já contém email cadastrado");
     }
     try {
-      const senhaHash = await hash(dto.senha, 6); 
+      const senhaHash = await hash(dto.senha, 6);
       const criarUsuario = await dataBase.User.create({
         name: dto.nome,
         email: dto.email,
@@ -68,7 +71,7 @@ class UsuarioService {
     const usuario = await dataBase.User.findOne({ where: { id } });
 
     if (!usuario) {
-      throw new Error("Usuário não encontrado");
+      throw new Error("Usuário não encontrado, tente novamente com ID válido");
     }
 
     if (dto.senha) {
@@ -97,10 +100,10 @@ class UsuarioService {
       },
     });
     if (!deletarUsuario) {
-      throw new Error("Não foi possível deletar, confira se o ID existe");
+      throw new Error("Não foi possível deletar, informe um Id válido");
     }
     return { message: "Usuário deletado com sucesso" };
   }
 }
 export default UsuarioService;
-//tste 
+//tste

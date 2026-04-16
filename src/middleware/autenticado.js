@@ -18,6 +18,6 @@ export default async (req, res, next) => {
     req.usuarioEmail = decode.email;
     return next();
   } catch (error) {
-    return res.status(401).send("Usuário não autorizado ou token expirado");
+    return res.status(401).json({message: "Usuário não autorizado ou token expirado"});
   }
 };

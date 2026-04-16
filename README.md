@@ -9,26 +9,44 @@ API de autenticação desenvolvida com **Node.js**, focada em segurança e escal
 * **Runtime:** Node.js
 * **Framework:** Express
 * **ORM:** Sequelize
-* **Banco de Dados:** SQLite 
+* **Banco de Dados:** * **Desenvolvimento (Local):** SQLite 
+* **Produção (Deploy):** PostgreSQL
 * **Segurança:** JWT (JSON Web Token) & Bcrypt (Hashing de senhas)
 * **Documentação:** Swagger UI
+
+---
+
+## 🧪 Credenciais de Teste
+
+Para agilizar o teste inicial da aplicação, você pode utilizar o seguinte usuário pré-configurado:
+
+| Campo | Valor |
+| :--- | :--- |
+| **Nome** | `Teste aplicação` |
+| **E-mail** | `testeApi@email.com` |
+| **Senha** | `TesteApi1234` |
 
 ---
 
 ## ⚙️ Funcionalidades
 
 * **Cadastro de Usuário:** Registro seguro.
-* **Autenticação:** Sistema de Login que gera tokens JWT com expiração de 1h.
+* **Autenticação:** Sistema de Login que gera tokens JWT.
 * **Segurança:** Senhas protegidas com Salt Hashing via Bcrypt.
-* **CRUD Completo:** Listagem, busca por ID, atualização de dados, criação de novos usuários e exclusão de usuários.
+* **Ambientes Híbridos:** Configuração automatizada para usar SQLite localmente e PostgreSQL em produção.
 * **Middleware de Proteção:** Verificação de token em rotas sensíveis.
 * **Documentação Viva:** Interface Swagger para testes em tempo real.
 
 ---
 
+## ☁️ Deploy (Railway)
+
+Esta aplicação está hospedada no **Railway**. 
+
+---
+
 ## 📂 Estrutura do Projeto
 
-```text
 src/
  ├── controller/    # Gerenciamento de requisições e respostas
  ├── service/       # Regras de negócio e integração com banco

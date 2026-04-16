@@ -8,7 +8,7 @@ class UsuarioController {
       const buscarUsuarios = await usuarioService.listarUsuarios();
       res.status(200).json(buscarUsuarios);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(400).json({message: error.message});
     }
   }
 
@@ -18,7 +18,7 @@ class UsuarioController {
       const buscaId = await usuarioService.listarUsuarioPorId(id);
       res.status(200).json(buscaId);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(400).json({message: error.message});
     }
   }
   static async criarUsuario(req, res) {
@@ -34,7 +34,7 @@ class UsuarioController {
         usuario: cadastrarUsuario,
       });
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(400).json({message: error.message});
     }
   }
   static async deletarUsuario(req, res) {
@@ -44,7 +44,7 @@ class UsuarioController {
       const excluirUsuario = await usuarioService.deletarUsuario(id);
       res.status(200).json(excluirUsuario);
     } catch (error) {
-      res.status(500).json(error.message);
+      res.status(500).json({message: error.message});
     }
   }
   static async atualizarUsuario(req, res) {
@@ -58,7 +58,7 @@ class UsuarioController {
       });
       res.status(200).json(usuarioAtualizado);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(400).json({message: error.message});
     }
   }
   static async login(req, res) {
